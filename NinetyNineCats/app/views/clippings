@@ -1,0 +1,51 @@
+<h1>Let's Make Kittens</h1>
+<form class="" action="/cats" method="post">
+  <input type='hidden' name='authenticity_token' value="<%= form_authenticity_token %>">
+  
+  <label>
+    Name:
+    <input type="text" name="cat[name]" value="">
+  </label>
+  <br>
+  
+  <label>
+    Sex:
+    <!-- <input type="radio" name="cat[sex]" checked value=""> -->
+    <br>
+    <input type="radio" name="cat[sex]" value="F">F</input>
+    <input type="radio" name="cat[sex]" value="M">M</input>
+  </label><br>
+  
+  <label>
+    Color:
+    <!-- <input type="text" name="cat[color]" value=""> -->
+    <select name="cat[color]">
+      <option disabled selected value="PICK A COLOR">PICK A COLOR</option>
+      
+      <% Cat.colors.each do |color| %>
+        <option value="<%= color %>"><%= color %></option>
+      <% end %>
+      
+    </select>
+  </label>
+  <br>
+
+  <br>
+  <label>
+    Birth_Date:
+    <!-- <input type="text" name="cat[birth_date]" value=""> -->
+    <input type="date" name="cat[birth_date]"
+               value="2018-07-22"
+               min="1993-01-01" max="2018-09-11" />
+  </label>
+  <br>
+  
+  <label>
+    Description:
+    <!-- <input type="text" name="cat[description]" value=""> -->
+    <textarea name="cat[description]" rows="8" cols="80"></textarea>
+  </label>
+  <br>
+  
+  <input type="submit" value="Submit Me! =)">
+</form>

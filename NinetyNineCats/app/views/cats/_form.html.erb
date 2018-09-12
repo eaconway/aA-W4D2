@@ -1,0 +1,53 @@
+<h1><%= type == :new ? "Let's Make Kittens" : "Let's Edit Kittens" %></h1>
+
+<form class="" action="<%= cat_url(cat) %>" method="post">
+  
+  <input type='hidden' name='authenticity_token' value="<%= form_authenticity_token %>">
+  
+  <% if type == :edit %>
+    <input type='hidden' name='_method' value='patch'></input>
+  <% end %>
+  
+  <label>
+    Name:
+    <input type="text" name="cat[name]" value="<%= cat.name %>">
+  </label>
+  <br>
+  
+  <label>
+    Sex:
+    <br>
+    <input <%= cat.sex == 'F' ? 'checked' : '' %> type="radio" name="cat[sex]" value="F">F</input>
+    <input <%= cat.sex == 'M' ? 'checked' : '' %> type="radio" name="cat[sex]" value="M">M</input>
+  </label><br>
+  
+  <label>
+    Color:
+    <select name="cat[color]">
+      <option disabled selected='<%= type == :new %>' value="PICK A COLOR">PICK A COLOR</option>
+      
+      <% Cat.colors.each do |color| %>
+        <option selected='<%= cat.color == color %>' value="<%= color %>"><%= color %></option>
+      <% end %>
+      
+    </select>
+  </label>
+  <br>
+
+  <br>
+  <label>
+    Birth_Date:
+    <input type="date" name="cat[birth_date]"
+               value="<%= cat.birth_date %>"
+               min="1993-01-01" max="2018-09-11" />
+  </label>
+  <br>
+  
+  <label>
+    Description:
+    <textarea name="cat[description]" value="<%= cat.description %>" rows="8" cols="80"></textarea>
+  </label>
+  <br>
+  
+  <input type="submit" value="Submit Me! =)">
+</form>
